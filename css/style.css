@@ -29,10 +29,13 @@ h1 {
 /* card */
 
 .card {
-    min-width: 120px;
-    height: 150px;
+    width: 200px;
+    height: 250px;
     position: relative;
-    margin: 17px 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 17px;
 }
 
 .card img {
@@ -59,11 +62,11 @@ h1 {
     transform: rotateY(180deg);
 }
 
-.card:hover .back-face {
+.turn-back {
     transform: rotateY(0deg);
 }
 
-.card:hover .front-face {
+.turn-front {
     transform: rotateY(-180deg);
 }
 
@@ -71,8 +74,7 @@ h1 {
     h1 {
         font-size: 36px;
     }
-    .section {
-        max-width: 425px;
+    .card-single {
+        margin: 40px;
     }
-    .card {}
 }
