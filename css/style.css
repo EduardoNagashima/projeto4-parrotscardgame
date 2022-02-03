@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 * {
     box-sizing: border-box;
 }
 
 body {
     background-color: #EEF9BF;
+    font-family: 'Roboto', sans-serif;
 }
 
 section {
+    max-width: 1000px;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -25,10 +29,15 @@ h1 {
 /* card */
 
 .card {
-    width: 200px;
-    height: 250px;
+    min-width: 120px;
+    height: 150px;
     position: relative;
-    margin: 34px;
+    margin: 17px 17px;
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
 }
 
 .face {
@@ -62,4 +71,8 @@ h1 {
     h1 {
         font-size: 36px;
     }
+    .section {
+        max-width: 425px;
+    }
+    .card {}
 }

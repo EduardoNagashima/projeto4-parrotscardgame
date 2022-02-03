@@ -5,15 +5,22 @@ function playGame() {
     while (cardsNumber % 2 == 1 || cardsNumber > 14 || cardsNumber < 4) {
         cardsNumber = parseInt(prompt('Com quantas cartas quer jogar? (4 à 14)'));
     }
+    dealingCards();
 }
 
 function dealingCards() {
-    div = document.querySelector(".cards");
+    cartas = document.querySelector(".cartas");
     for (let cont = 0; cont < cardsNumber; cont++) {
-        console.log(cont);
-        // USAR += PARA CONCATENAR O INNERHTML E COLOCAR + DE 1 COISA NA TELA
+        cartas.innerHTML += `<div class="card">
+       <div class="front-face face">
+         <img src="image/parrot.png" alt="carta-parrot">
+       </div>
+       <div class="back-face face">
+           Verso
+       </div>
+   </div>`
+
     }
 }
 
-playGame()
-dealingCards();
+playGame();
