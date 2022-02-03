@@ -1,8 +1,7 @@
 let cardsNumber;
-let idCartas = [];
 let contPlays = 0;
-// idCarta, conjunto de 2 em 2.
-
+let cards = []
+let outraArray = []
 
 function playGame() {
     cardsNumber = 4;
@@ -16,31 +15,36 @@ function playGame() {
 
 function dealingCards() {
     cartas = document.querySelector(".cards");
+
+    for (let cont = 0; cont < cardsNumber; cont++) {
+        cards.push(cont);
+    }
+
+    cards.sort(comparador);
     for (let cont = 0; cont < cardsNumber; cont++) {
         cartas.innerHTML += `
-        <div class="card" id=${idCartas.push(cont)} onclick=turn(this)>
+        <div class="card" onclick=turn(this)>
             <div class="face front-face">
                 <img src="image/parrot.png" alt="carta-parrot">
             </div>
             <div class="back-face face">
-                Verso
+                Verso ${cards[cont]}
             </div>
         </div>`
     }
-    idCartas.sort(comparador);
+
 }
 
 function turn(el) {
-    let cardFront = el.querySelector('.front-face');
-    let cardBack = el.querySelector('.back-face');
-    cardBack.classList.add('turn-back');
-    cardFront.classList.add('turn-front');
-    if (el.id == 1) {
+    turnCard(el);
+    el.classList.add('flipped');
+    if (el.classList.contains('flipped')) {
+        // achar uma condição para comparar duas cartas
 
     } else {
         setTimeout(function esperar() {
-            cardBack.classList.remove('turn-back');
-            cardFront.classList.remove('turn-front');
+            turn(el);
+            el.classList.remove('flipped')
         }, 2000);
     }
 
@@ -48,13 +52,21 @@ function turn(el) {
     refreshCount();
 }
 
+function turnCard(el) {
+    const cardFront = el.querySelector('.front-face');
+    const cardBack = el.querySelector('.back-face');
+    cardBack.classList.toggle('turn-back');
+    cardFront.classList.toggle('turn-front');
+}
+
+
+
 function comparador() {
     return Math.random() - 0.5;
 }
 
 function refreshCount() {
     cont = document.querySelector('.cont');
-    console.log(cont)
     cont.innerHTML = `<h1>${contPlays}</h1>`;
 }
 
