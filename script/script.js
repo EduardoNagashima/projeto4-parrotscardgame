@@ -31,11 +31,11 @@ function dealingCards() {
     cartas = document.querySelector(".cards");
     for (let cont = 0; cont < cardsNumber; cont++) {
         cartas.innerHTML += `
-        <div class="card" onclick=turn(this)>
-            <div class="face front-face">
+        <div class="card" onclick=turn(this) data-identifier="card">
+            <div class="face front-face" data-identifier="front-face">
                 <img src="images/parrot.png" alt="carta-parrot">
             </div>
-            <div class="back-face face">
+            <div class="back-face face" data-identifier="back-face">
                 <img src="${imgArray[cont]}">
             </div>
         </div>`
@@ -48,13 +48,12 @@ function turn(el) {
         turnCard(el);
         el.classList.add('flipped');
         el.style.pointerEvents = 'none';
-        let comparationArray = document.querySelectorAll('.flipped');
-        console.log(comparationArray);
+        let comparationArray = document.querySelectorAll(".flipped");
         if (comparationArray.length == 2) {
             if (comparationArray[0].innerHTML == comparationArray[1].innerHTML) {
                 match();
             } else {
-                setTimeout(turnBack, 500);
+                setTimeout(turnBack, 1000);
             }
         }
         contPlays++;
@@ -62,29 +61,26 @@ function turn(el) {
     }
 }
 
-
 function match() {
     let flippeds = document.querySelectorAll(".flipped");
-
     for (let i = 0; i < flippeds.length; i++) {
         flippeds[i].classList.remove("flipped");
         flippeds[i].classList.add("matched");
         flippeds[i].onclick = '';
         qntMatch++;
     }
-    console.log(qntMatch);
     if (qntMatch === (cardsNumber)) {
-        alert('ACABOU O JOGO!');
+        alert(`ACABOU O JOGO! Você ganhou em ${contPlays+1} jogadas`);
+        let answer = prompt("Quer continuar a jogar? 'N' para não").toUpperCase();
+        if (answer != 'N') {
+            window.location.reload();
+        }
     }
 }
 
-
-
 function turnCard(el) {
-    const cardFront = el.querySelector('.front-face');
-    const cardBack = el.querySelector('.back-face');
-    cardBack.classList.toggle('turn-back');
-    cardFront.classList.toggle('turn-front');
+    el.querySelector('.front-face').classList.toggle('turn-front');
+    el.querySelector('.back-face').classList.toggle('turn-back');
 }
 
 function turnBack() {
@@ -102,7 +98,7 @@ function comparador() {
 
 function refreshCount() {
     cont = document.querySelector('.cont');
-    cont.innerHTML = `<h1>${contPlays}</h1>`;
+    cont.innerHTML = `<h2>${contPlays}</h2>`;
 }
 
 playGame();
