@@ -17,16 +17,11 @@ imgArray.push('images/tripletsparrot.gif');
 imgArray.push('images/unicornparrot.gif');
 imgArray.push('images/unicornparrot.gif');
 
-// 5 - se todas derem "matchs", acabar o jogo!
-
 function playGame() {
-    cardsNumber = 4;
-
-    // parseInt(prompt('Com quantas cartas quer jogar? (4 à 14)'));
-    // while (cardsNumber % 2 == 1 || cardsNumber > 14 || cardsNumber < 4) {
-    //     cardsNumber = parseInt(prompt('Com quantas cartas quer jogar? (4 à 14)'));
-    // }
-
+    cardsNumber = parseInt(prompt('Com quantas cartas quer jogar? (4 à 14)'));
+    while (cardsNumber % 2 == 1 || cardsNumber > 14 || cardsNumber < 4) {
+        cardsNumber = parseInt(prompt('Com quantas cartas quer jogar? (4 à 14)'));
+    }
     imgArray = imgArray.slice(0, cardsNumber);
     imgArray.sort(comparador);
     dealingCards();
@@ -49,7 +44,6 @@ function dealingCards() {
 
 function turn(el) {
     let flippeds = document.querySelectorAll(".flipped");
-    // conferir pra ver se tem 2 levantadas, se não não deixar levantar mais de 2
     if (flippeds.length < 2) {
         turnCard(el);
         el.classList.add('flipped');
