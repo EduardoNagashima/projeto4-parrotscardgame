@@ -72,7 +72,7 @@ function match() {
         qntMatch++;
     }
     if (qntMatch === (cardsNumber)) {
-        finishgame();
+        setTimeout(finishgame, 1000);
     }
 }
 
