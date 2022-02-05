@@ -25,12 +25,31 @@ h1 {
     text-align: center;
 }
 
-h2 {
+.timer {
+    color: darkgray;
+    font-size: 22px;
+    text-shadow: 1px 1px 1px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.timer h2 {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.cont {
+    font-size: 15px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.cont h2 {
     text-align: right;
     color: red;
     font-size: 35px;
     font-weight: 500;
-    margin-right: 15px;
+    margin-right: 8px;
 }
 
 
@@ -87,5 +106,14 @@ h2 {
     }
     .card {
         margin: 34px 50px;
+    }
+    .timer {
+        font-size: 18px;
+    }
+    .cont {
+        font-size: 10px;
+    }
+    .cont h2 {
+        font-size: 20px;
     }
 }

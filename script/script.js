@@ -17,6 +17,7 @@ imgArray.push('images/tripletsparrot.gif');
 imgArray.push('images/unicornparrot.gif');
 imgArray.push('images/unicornparrot.gif');
 
+
 function playGame() {
     cardsNumber = parseInt(prompt('Com quantas cartas quer jogar? (4 à 14)'));
     while (cardsNumber % 2 == 1 || cardsNumber > 14 || cardsNumber < 4) {
@@ -25,6 +26,7 @@ function playGame() {
     imgArray = imgArray.slice(0, cardsNumber);
     imgArray.sort(comparador);
     dealingCards();
+    randomFavicon();
 }
 
 function dealingCards() {
@@ -70,11 +72,7 @@ function match() {
         qntMatch++;
     }
     if (qntMatch === (cardsNumber)) {
-        alert(`ACABOU O JOGO! Você ganhou em ${contPlays+1} jogadas`);
-        let answer = prompt("Quer continuar a jogar? 'N' para não").toUpperCase();
-        if (answer != 'N') {
-            window.location.reload();
-        }
+        finishgame();
     }
 }
 
@@ -96,9 +94,34 @@ function comparador() {
     return Math.random() - 0.5;
 }
 
-function refreshCount() {
-    cont = document.querySelector('.cont');
-    cont.innerHTML = `<h2>${contPlays}</h2>`;
+function timer() {
+    timer = document.querySelector('.timer h2');
+    timer.innerHTML = parseInt(timer.innerHTML) + 1;
 }
 
+function finishgame() {
+    clearInterval(intervalo);
+    let tempo = document.querySelector('.timer h2').innerHTML;
+    console.log(tempo);
+    alert(`ACABOU O JOGO! Você ganhou em ${contPlays+1} jogadas e em ${tempo} segundos`);
+    let answer = prompt("Quer continuar a jogar? 'S' ou 'N' ").toUpperCase();
+    if (answer[0] == 'S') {
+        window.location.reload();
+    }
+}
+
+function refreshCount() {
+    clean = ''
+    cont = document.querySelector('.cont h2');
+    cont.innerHTML = clean;
+    cont.innerHTML = `${contPlays}`;
+}
+
+function randomFavicon() {
+    favicon = document.querySelector('head');
+    let random = Math.floor(Math.random() * (imgArray.length - 0)) + 0;
+    favicon.innerHTML += `<link class="favicon" rel="icon" href='${imgArray[random]}'></link>`
+}
+
+const intervalo = setInterval(timer, 1000);
 playGame();
