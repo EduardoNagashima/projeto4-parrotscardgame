@@ -103,7 +103,7 @@ function finishgame() {
     clearInterval(intervalo);
     let tempo = document.querySelector('.timer h2').innerHTML;
     console.log(tempo);
-    alert(`ACABOU O JOGO! Você ganhou em ${contPlays+1} jogadas e em ${tempo} segundos`);
+    alert(`ACABOU O JOGO! Você ganhou em ${contPlays} jogadas e em ${tempo} segundos`);
     let answer = prompt("Quer continuar a jogar? 'S' ou 'N' ").toUpperCase();
     if (answer[0] == 'S') {
         window.location.reload();
